@@ -12,12 +12,10 @@ tasks:
       cp tools/gitpod/settings.json .vscode/settings.json
       conda activate numpy-dev
       git submodule update --init
-      if python setup.py build_ext --inplace; then
-        echo "🛠 Completed rebuilding NumPy!! 🛠 "
-        echo "✨ Pre-build complete! You can close this terminal ✨ "
-      else 
-        echo "⚠️ Something did not work as expected - you might want to build NumPy manually with python setup.py build_ext --inplace"
-      fi
+      echo "*-------------------------------------------------------------*"
+      python setup.py build_ext --inplace
+      echo "🛠 Completed rebuilding NumPy!! 🛠 "
+      echo "✨ Pre-build complete! You can close this terminal ✨ "
       python -c "import numpy; print(numpy.version.git_revision[:10])"
       gp sync-done dev_env 
   - name: Generate docs
