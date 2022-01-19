@@ -27,7 +27,7 @@
 # OS/ARCH: linux/amd64
 FROM gitpod/workspace-base:latest
 
-ARG MAMBAFORGE_VERSION="4.10.0-0"
+ARG MAMBAFORGE_VERSION="4.11.0-0"
 ARG CONDA_ENV=numpy-dev
 
 
@@ -70,6 +70,7 @@ SHELL ["/bin/bash", "--login", "-o", "pipefail", "-c"]
 
 # -----------------------------------------------------------------------------
 # ---- Installing mamba  ----
+# For versions see https://github.com/conda-forge/miniforge#mambaforge
 RUN wget -q -O mambaforge3.sh \
     "https://github.com/conda-forge/miniforge/releases/download/$MAMBAFORGE_VERSION/Mambaforge-$MAMBAFORGE_VERSION-Linux-x86_64.sh" && \
     bash mambaforge3.sh -p ${CONDA_DIR} -b && \
