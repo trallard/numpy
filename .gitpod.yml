@@ -11,13 +11,22 @@ tasks:
       mkdir -p .vscode
       cp tools/gitpod/settings.json .vscode/settings.json
       conda activate numpy-dev
-      python setup.py build_ext --inplace
-      echo "🛠 Completed rebuilding NumPy!! 🛠 "
+      git submodule update --init
+      if python setup.py build_ext --inplace; then
+        echo "🛠 Completed rebuilding NumPy!! 🛠 "
+        echo "✨ Pre-build complete! You can close this terminal ✨ "
+      else 
+        echo "⚠️ Something did not work as expected - you might want to build NumPy manually with python setup.py build_ext --inplace"
+      fi
+      python -c "import numpy; print(numpy.version.git_revision[:10])"
+      gp sync-done dev_env 
+  - name: Generate docs
+    init: |
+      gp sync-await dev_env
       echo "📖 Building docs 📖 "
       cd doc
       make html
       echo "✨ Pre-build complete! You can close this terminal ✨ "
-  
 
 # --------------------------------------------------------
 # exposing ports for liveserve

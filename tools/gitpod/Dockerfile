@@ -44,9 +44,11 @@ USER root
 
 # hadolint ignore=DL3008
 RUN apt-get update && \
+    apt-add-repository universe && \
     apt-get install -yq --no-install-recommends \
     ca-certificates \
     dirmngr \
+    doxygen \
     dvisvgm \
     gnupg \
     gpg-agent \
