@@ -6,7 +6,7 @@
 
 image: numpy/numpy-gitpod:latest
 tasks:
-  - name: Prepare development
+  - name: Prepare development environment
     init: |
       mkdir -p .vscode
       cp tools/gitpod/settings.json .vscode/settings.json
@@ -14,17 +14,11 @@ tasks:
       git submodule update --init
       echo "*-------------------------------------------------------------*"
       python setup.py build_ext --inplace
-      echo "🛠 Completed rebuilding NumPy!! 🛠 "
-      echo "✨ Pre-build complete! You can close this terminal ✨ "
-      python -c "import numpy; print(numpy.version.git_revision[:10])"
-      gp sync-done dev_env 
-  - name: Generate docs
-    init: |
-      gp sync-await dev_env
-      echo "📖 Building docs 📖 "
-      cd doc
-      make html
-      echo "✨ Pre-build complete! You can close this terminal ✨ "
+    # init: |
+    #   echo "📖 Building docs 📖 "
+    #   cd doc
+    #   make html
+    #   echo "✨ Pre-build complete! You can close this terminal ✨ "
 
 # --------------------------------------------------------
 # exposing ports for liveserve
