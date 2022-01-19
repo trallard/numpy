@@ -11,9 +11,9 @@ tasks:
       mkdir -p .vscode
       cp tools/gitpod/settings.json .vscode/settings.json
       conda activate numpy-dev
-      python --version
+      git fetch --tags
       echo "*-------------------------------------------------------------*"
-      # python setup.py build_ext --inplace
+      python setup.py build_ext --inplace
     # init: |
     #   echo "📖 Building docs 📖 "
     #   cd doc
